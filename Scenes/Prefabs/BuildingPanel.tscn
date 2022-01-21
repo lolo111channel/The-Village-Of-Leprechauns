@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Graphics/Fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Building/BuildingPanel.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Prefabs/Building.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sounds/63524__florian-reinke__money5.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/249300__suntemple__access-denied.wav" type="AudioStream" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 6
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 7
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[node name="BuildingPanel" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -368.0
+margin_bottom = -247.0
+rect_min_size = Vector2( 112, 23 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+prefab = ExtResource( 3 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 16.0
+margin_top = 1.0
+margin_right = 96.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 80, 20 )
+
+[node name="Grid" type="GridContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Center" type="CenterContainer" parent="Panel/Grid"]
+margin_right = 80.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 80, 0 )
+
+[node name="Label" type="Label" parent="Panel/Grid/Center"]
+margin_left = 20.0
+margin_right = 60.0
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 1 )
+text = "House"
+
+[node name="Grid" type="GridContainer" parent="Panel/Grid"]
+margin_top = 12.0
+margin_right = 80.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 80, 8 )
+custom_constants/vseparation = 2
+columns = 2
+
+[node name="Label" type="Label" parent="Panel/Grid/Grid"]
+margin_right = 40.0
+margin_bottom = 6.0
+rect_min_size = Vector2( 40, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "100c"
+
+[node name="Build" type="TextureButton" parent="Panel/Grid/Grid"]
+margin_left = 44.0
+margin_right = 79.0
+margin_bottom = 6.0
+rect_min_size = Vector2( 35, 6 )
+expand = true
+
+[node name="Label" type="Label" parent="Panel/Grid/Grid/Build"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 3 )
+text = "Build"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="sound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[connection signal="pressed" from="Panel/Grid/Grid/Build" to="." method="_on_Build_pressed"]

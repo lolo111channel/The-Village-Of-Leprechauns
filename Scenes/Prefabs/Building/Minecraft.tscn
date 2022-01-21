@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Building.gd" type="Script" id=1]
+[ext_resource path="res://Graphics/Building/mine.png" type="Texture" id=2]
+[ext_resource path="res://Sounds/114684__qat__whack03.wav" type="AudioStream" id=3]
+
+[node name="Building" type="Node2D"]
+script = ExtResource( 1 )
+cost = 200
+add_max_people = 2
+gain_people = 0.02
+add_max_working_people = 75
+gain_working_people = 1.0
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="whack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
